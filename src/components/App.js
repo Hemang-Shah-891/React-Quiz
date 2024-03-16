@@ -29,7 +29,7 @@ function reducer(state, action) {
     case "dataReceived":
       return {
         ...state,
-        questions: action.payload,
+        questions: action.payload.questions,
         status: "ready",
       };
 
@@ -96,9 +96,14 @@ export default function App() {
   );
 
   useEffect(function () {
-    fetch("http://localhost:8000/questions")
+    fetch(
+      "https://raw.githubusercontent.com/Hemang-Shah-891/React-Quiz/main/data/questions.json"
+    )
       .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
+      .then((data) => {
+        console.log(data);
+        dispatch({ type: "dataReceived", payload: data });
+      })
       .catch((err) => dispatch({ type: "dataFailed" }));
   }, []);
 
