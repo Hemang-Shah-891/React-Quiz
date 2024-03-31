@@ -96,9 +96,7 @@ export default function App() {
   );
 
   useEffect(function () {
-    fetch(
-      "https://raw.githubusercontent.com/Hemang-Shah-891/React-Quiz/main/data/questions.json"
-    )
+    fetch("./questions.json")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
